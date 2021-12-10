@@ -29,7 +29,7 @@ class ExtendedScaleUpdateDetails extends ScaleUpdateDetails {
           verticalScale: verticalScale,
           rotation: rotation,
           pointerCount: pointerCount,
-          delta: delta,
+          focalPointDelta: delta,
           scale: scale,
         );
 
@@ -336,7 +336,7 @@ class ExtendedScaleGestureRecognizer extends OneSequenceGestureRecognizer {
       final double focalPointDelta =
           (_currentFocalPoint - _initialFocalPoint).distance;
       if (spanDelta > computeScaleSlop(pointerDeviceKind) ||
-          focalPointDelta > computePanSlop(pointerDeviceKind))
+          focalPointDelta > computePanSlop(pointerDeviceKind, null))
         resolve(GestureDisposition.accepted);
     } else if (_state.index >= _ScaleState.accepted.index) {
       resolve(GestureDisposition.accepted);
